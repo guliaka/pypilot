@@ -13,7 +13,7 @@ import os, sys, time
 import gps
 
 if len(sys.argv) > 1:
-    addr = sys.argv[1]
+    addr = sys.argv[1]pip
 else:
     addr = '127.0.0.1'
 
