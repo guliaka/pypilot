@@ -45,7 +45,7 @@ class GpsProbe():
             if not os.system('timeout -s KILL -t 5 gpsctl -f ' + device + ' 2> /dev/null'):
                 os.environ['GPSD_SOCKET'] = '/tmp/gpsd.sock'
                 os.system('gpsdctl add ' + device)
-                print 'GPS found: ' + device
+                print ('GPS found: ' + device)
                 self.lastgpsdevice = device
                 return True
             sys.stdout.flush()
@@ -59,18 +59,18 @@ class GpsProbe():
                 if 'devices' in result:
                     activated = len(result['devices']) > 0
                     if activated != self.gpsd.activated:
-                        print 'GPS ' + ('' if activated else 'de') + 'activated'
+                        print ('GPS ' + ('' if activated else 'de') + 'activated')
                     self.gpsd.activated = activated
                     break
                     
             except StopIteration:
-                print 'GPS lost gpsd'
+                print('GPS lost gpsd')
                 return
 
         if not self.gpsd.activated:
             if self.probe():
                 self.gpsd.activated = True
-                print 'GPS probe success'
+                print ('GPS probe success')
 
         activated = self.gpsd.activated
         del self.gpsd
@@ -90,7 +90,7 @@ def main():
             gpsprobe.verify()
 
     except KeyboardInterrupt:
-        print 'Keyboard interrupt, gpsprobe exit'
+        print ('Keyboard interrupt, gpsprobe exit')
 
 if __name__ == "__main__":
     main()

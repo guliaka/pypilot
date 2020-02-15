@@ -20,7 +20,7 @@ else:
 while True:
     while True:
         try:
-            print 'try', addr
+            print ('try', addr)
             gpsd = gps.gps(host=addr, mode=gps.WATCH_ENABLE) #starting the stream of info
             break
         except:
@@ -36,7 +36,7 @@ while True:
 
         if len(gpsd.utc):
             date, t = gpsd.utc[:-5].split('T')
-            print 'Setting date to gps time', date, t
+            print ('Setting date to gps time', date, t )
             sys.stdout.flush()
             os.system('date -u -s "' + date + ' ' + t + '"')
             del gpsd
